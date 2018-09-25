@@ -8,42 +8,42 @@ import com.relevantcodes.extentreports.LogStatus;
 import globaldata.Constants;
 import trigger.Execution;
 
-public class CurrentOperatorNidRange {
+public class OtherOperatorNid {
 	static int n;
 	static int n1;
 	static int n2;
 	static int n3;
+	static int n4;
 	static String gsm;
 	static String gsm1;
 	static String gsm2;
 
-	public static void currentOperator() throws InterruptedException {
-		// Checking the RadioButtons is Selected or Not
-
+	public static void otherOperatorNid() throws InterruptedException {
+		System.out.println("Other Operator NID Range Validation Started ");
 		boolean sel = Constants.driver.findElement(By.xpath("//input[@value='add']")).isSelected();
 		if (true == sel) {
-			System.out.println("Add Button is default selected");
-			Execution.test.log(LogStatus.PASS, "Add Button is default selected");
+			System.out.println("ADD  Button is default selected");
+			Execution.test.log(LogStatus.PASS, "ADD is selected");
 		} else {
-			System.out.println("Radio Button is not seleted");
+			System.out.println("ADD  Button is not seleted");
 			Constants.driver.findElement(By.xpath("//input[@value='add']")).click();
-			Execution.test.log(LogStatus.PASS, "Add  Button is now selected");
+			Execution.test.log(LogStatus.PASS, "ADD is selected");
 		}
 		boolean sel1 = Constants.driver.findElement(By.xpath("//input[@value='SingleNID']")).isSelected();
-		if (false == sel1) {
-			System.out.println("SingleTon Button is default selected");
-			Execution.test.log(LogStatus.PASS, "SingleTon Button is default selected");
+		if (true == sel1) {
+			System.out.println("Single Ton Button is default selected");
+			Execution.test.log(LogStatus.PASS, "Single TON is selected");
 		} else {
 			Constants.driver.findElement(By.xpath("//input[@value='SingleNID']")).click();
-			Execution.test.log(LogStatus.PASS, "Single Ton Button is Now Selected selected");
+			Execution.test.log(LogStatus.PASS, "Single Ton INPUT is selected");
 		}
 		Thread.sleep(2000);
 
 		// Sending the Values to the Text Field
-		Constants.driver.findElement(By.xpath("//input[@name='txtMCRangeName']")).clear();
-		Constants.driver.findElement(By.xpath("//input[@name='txtMCRangeName']")).sendKeys(Constants.name);
-		Constants.driver.findElement(By.xpath("//input[@name='txtMCPrefix']")).clear();
-		Constants.driver.findElement(By.xpath("//input[@name='txtMCPrefix']")).sendKeys("91");
+		Constants.driver.findElement(By.xpath("//input[@name='txtOtherOpRangeName']")).clear();
+		Constants.driver.findElement(By.xpath("//input[@name='txtOtherOpRangeName']")).sendKeys(Constants.name);
+		Constants.driver.findElement(By.xpath("//input[@name='txtOtherOpPrefix']")).clear();
+		Constants.driver.findElement(By.xpath("//input[@name='txtOtherOpPrefix']")).sendKeys("919");
 		Thread.sleep(2000);
 
 		// Operation for Selecting Air Interface BAsed on user Choice
@@ -54,19 +54,16 @@ public class CurrentOperatorNidRange {
 			gsm = Constants.driver.findElement(By.xpath("//option[@value='GSM']")).getText();
 			System.out.println(gsm + " " + "Air interface is selected \n");
 			dropdown.selectByValue("GSM");
-			Execution.test.log(LogStatus.PASS, "GSM Air Interface is selected");
 		} else if (n == 2) {
 			gsm1 = Constants.driver.findElement(By.xpath("//option[@value='CDMA']")).getText();
 			System.out.println(gsm1 + " " + "Air interface is selected \n");
 			dropdown.selectByValue("CDMA");
-			Execution.test.log(LogStatus.PASS, "CDMA Air Interface is selected");
 		} else if (n == 3) {
 			gsm2 = Constants.driver.findElement(By.xpath("//option[@value='TDMA']")).getText();
 			System.out.println(gsm2 + " " + "Air interface is selected \n");
 			dropdown.selectByValue("TDMA");
-			Execution.test.log(LogStatus.PASS, "TDMA Air Interface is selected");
 		} else {
-			Execution.test.log(LogStatus.FAIL, "Invalid INput is selected");
+			Execution.test.log(LogStatus.FAIL, "Invalid INPUT is selected");
 		}
 		Thread.sleep(2000);
 
@@ -82,18 +79,16 @@ public class CurrentOperatorNidRange {
 			System.out.println(hide);
 			Select option = new Select(Constants.driver.findElement(By.xpath("//select[@name='sltStpPrim']")));
 			option.selectByVisibleText("kar");
-			Execution.test.log(LogStatus.PASS, "Primary STP is Selected");
 			Thread.sleep(1000);
 			Select option1 = new Select(Constants.driver.findElement(By.xpath("//select[@name='sltStpSecond']")));
 			option1.selectByVisibleText("kar");
 			System.out.println(option1 + " " + "Selected Successfully");
-			Execution.test.log(LogStatus.PASS, "Secondary STP is Selected");
+			Execution.test.log(LogStatus.PASS, " in successfully");
 		} else if (n1 == 1) {
 			dropdown1.selectByValue("1");
 			System.out.println("Route Mode LoadShared is selected \n");
-			Execution.test.log(LogStatus.PASS, "LoadShared is selected");
-		} else{
-			Execution.test.log(LogStatus.FAIL, "Invalid Input is selected");
+		} else {
+			Execution.test.log(LogStatus.FAIL, "Invalid INPUT is selected");
 		}
 
 		Thread.sleep(2000);
@@ -106,15 +101,12 @@ public class CurrentOperatorNidRange {
 		if (n2 == 1) {
 			dropdown2.selectByValue("0");
 			System.out.println("Traffic Type SRI & MT is selected \n");
-			Execution.test.log(LogStatus.PASS, "SRI & MT is selected");
 		} else if (n2 == 2) {
 			dropdown2.selectByValue("1");
 			System.out.println("Traffic Type SRI is selected \n");
-			Execution.test.log(LogStatus.PASS, "SRI  is selected");
 		} else if (n2 == 3) {
 			dropdown2.selectByValue("2");
 			System.out.println("Traffic Type MT is selected \n");
-			Execution.test.log(LogStatus.PASS, "MT is selected");
 		} else {
 			Execution.test.log(LogStatus.FAIL, "Invalid INPUT is selected");
 		}
@@ -122,64 +114,41 @@ public class CurrentOperatorNidRange {
 
 		// Selecting the Protocol Version for USer
 		Select dropdown3 = new Select(Constants.driver.findElement(By.xpath("//*[@name='cboMapVersion']")));
-		System.out.print("Enter cboMapVersion  YOu Want to Select :\n 1. for V1 \n 2. for V2 \n 3. for V3 \n");
+		System.out.print("Enter cboMapVersion  YOu Want to Select :\n 1. for V2 \n 2. for V3 \n 3. for IS41_C \n 4. for IS41_D \n");
 		n3 = Constants.scan.nextInt();
 		if (n3 == 1) {
-			dropdown3.selectByValue("V1");
-			System.out.println("Protocol Version V1 is Selected \n");
-		} else if (n3 == 2) {
 			dropdown3.selectByValue("V2");
 			System.out.println("Protocol Version V2 is Selected \n");
-		} else if (n3 == 3) {
+		} else if (n3 == 2) {
 			dropdown3.selectByValue("V3");
 			System.out.println("Protocol Version V3 is Selected \n");
+		} else if (n3 == 3) {
+			dropdown3.selectByValue("IS41_C");
+			System.out.println("Protocol Version IS41_C is Selected \n");
+		}else if (n3==4){
+			dropdown3.selectByValue("IS41_D");
+			System.out.println("Protocol Version IS41_D is Selected \n");
 		} else {
-			Execution.test.log(LogStatus.FAIL, "INVALID INput is selected");
+			Execution.test.log(LogStatus.FAIL, "Invalid INPUT is selected");
 		}
 		Thread.sleep(2000);
 
-		// Selecting the MIS PLMN/Circle
-		// Select dropdown4 = new
-		// Select(Constants.driver.findElement(By.xpath("//*[@name=cboZoneNameForMIS']")));
-	}
-
-	public static void clear() throws InterruptedException {
-		// Clear the Fields for Clear button Verification
-		Thread.sleep(2000);
-		boolean bl = Constants.driver.findElement(By.xpath("(//a[contains(@href,'enable')])[2]")).isEnabled();
-		System.out.println(bl + " " + "Clear Button Is enbled \n ");
-		Constants.driver.findElement(By.xpath("(//a[contains(@href,'enable')])[2]")).click();
-		Execution.test.log(LogStatus.PASS, "Fields Cleared successfully");
-	}
-
-	public static void add() throws InterruptedException {
-		// Add the Fields for button Verification
-		Thread.sleep(2000);
-		boolean bl = Constants.driver.findElement(By.xpath("(//a[contains(@href,'enable')])[1]")).isEnabled();
-		System.out.println(bl + "Add Button Is enbled \n");
-		Constants.driver.findElement(By.xpath("(//a[contains(@href,'enable')])[1]")).click();
-		Execution.test.log(LogStatus.PASS, "Fields Added Successfully");
-	}
-
-	public static void modfiy() throws InterruptedException {
-		boolean sel1 = Constants.driver.findElement(By.xpath("//input[@value='modify']")).isSelected();
-		if (false == sel1) {
-			Constants.driver.findElement(By.xpath("//input[@value='modify']")).click();
+		Select dropdown4 = new Select(Constants.driver.findElement(By.name("cboIntIndicator")));
+		System.out.println("Enter your Choice For International Indicator \n 0 for National \n 1. for Internaltional \n");
+		n4 = Constants.scan.nextInt();
+		if (n4 == 0) {
+			dropdown4.selectByValue("0");
+			System.out.println(" National Selected SuceessFully");
+		} else if (n4 == 1) {
+			dropdown4.selectByValue("1");
+			System.out.println(" InterNational Selected SuceessFully");
+		
 		} else {
-			System.out.println("The Option is already selected");
-			Execution.test.log(LogStatus.PASS, "Option is Already is selected");
+			Execution.test.log(LogStatus.FAIL, "Invalid INPUT is selected");
 		}
-		System.out.println("Enter the NID Range you want to search for Modification / Deletion \n");
-		String str = Constants.scan.nextLine();
 		Thread.sleep(2000);
-		Constants.driver.findElement(By.xpath("//input[@id='NidTextSearch']")).sendKeys(str);
-		Thread.sleep(1000);
-		Constants.driver.findElement(By.xpath("//input[@type='submit']")).click();
-		Constants.driver.switchTo().alert().accept();
-		// Search the Element based on the user Search and Perform the Operation
-		Constants.driver
-				.findElement(By.xpath("//td[contains(text(),'" + str + "')]//../..//td//..//font[text()='[Edit]']"))
-				.click();
-		Execution.test.log(LogStatus.PASS, "Search is Working");
+		CurrentOperatorNidRange.clear();
+		
+
 	}
 }
